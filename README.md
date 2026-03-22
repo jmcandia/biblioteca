@@ -170,9 +170,11 @@ pom.xml
 Con la estrucutra creada, vamos a generar el primer modelo. Para ello, vamos al paquete `model` y creamos una nueva clase.
 
 - Visual Studio Code:
+  
   ![Nueva clase en VS Code](docs/03-vscode-new-class.png)
 
 - IntelliJ IDEA:
+  
   ![Nueva clase en IntelliJ](docs/03-intellij-new-class.png)
 
 A esta nueva clase la llamaremos `Libro`. El contenido inicial de esta clase debe ser el siguiente:
