@@ -549,7 +549,7 @@ public class LibroService {
 
 Por último, modificamos el método `deleteLibro` en controlador `LibroController` para retornar `void` en lugar de `boolean`:
 
-````java
+```java
 package cl.duoc.dsy1103.biblioteca.controller;
 
 .
