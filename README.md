@@ -133,9 +133,11 @@ Como siguiente paso, dentro del proyecto vamos a empezar a estructurar las carpe
 Para crear los paquetes en los distintos IDEs:
 
 - Visual Studio Code:
+  
   ![Nuevo paquete en VS Code](docs/02-vscode-new-package.png)
 
 - IntelliJ IDEA
+  
   ![Nuevo paquete en IntelliJ](docs/02-intellij-new-package.png)
 
 La estructura debe quedar de la siguiente manera:
@@ -347,8 +349,6 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.duoc.dsy1103.biblioteca.model.Libro;
 import cl.duoc.dsy1103.biblioteca.service.LibroService;
 
-
-
 @RestController // Indica que esta clase es un controlador REST de Spring
 @RequestMapping("/api/libros") // Define la ruta base para todas las solicitudes relacionadas con libros
 public class LibroController {
@@ -436,9 +436,11 @@ public class BibliotecaApplication {
 Ahora, podemos ejecutar nuestro código:
 
 - Desde Visual Studio Code
+  
   ![Ejecución en VS Code](docs/04-vscode-run.png)
 
 - Desde IntelliJ IDEA
+  
   ![Ejecución en IntelliJ](docs/04-intellij-run.png)
 
 Desde una herramienta como Postman, ingresamos a `http://localhost:8080/api/libros` usando el verbo `GET` y podremos ver el listado de los libros:

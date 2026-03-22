@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.duoc.dsy1103.biblioteca.model.Libro;
 import cl.duoc.dsy1103.biblioteca.service.LibroService;
 
-
-
 @RestController // Indica que esta clase es un controlador REST de Spring
 @RequestMapping("/api/libros") // Define la ruta base para todas las solicitudes relacionadas con libros
 public class LibroController {
