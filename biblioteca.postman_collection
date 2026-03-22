@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "b1d7fe7b-8171-41b8-a149-2d0992ec259c",
+    "name": "Biblioteca Duoc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "557811"
+  },
+  "item": [
+    {
+      "name": "Libros",
+      "item": [
+        {
+          "name": "Get all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/libros",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add book",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"id\", jsonData.id);\r",
+                  "pm.collectionVariables.set(\"isbn\", jsonData.isbn);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Función para generar un número aleatorio de N dígitos como string\r",
+                  "const randomDigits = (n) => {\r",
+                  "    let result = '';\r",
+                  "    for (let i = 0; i < n; i++) {\r",
+                  "        result += Math.floor(Math.random() * 10);\r",
+                  "    }\r",
+                  "    return result;\r",
+                  "};\r",
+                  "\r",
+                  "// Construir el ISBN con el formato 978-X-XX-XXXXXX-X\r",
+                  "const prefix = \"978\";\r",
+                  "const group = randomDigits(1);      // 1 dígito\r",
+                  "const publisher = randomDigits(2);  // 2 dígitos\r",
+                  "const title = randomDigits(6);      // 6 dígitos\r",
+                  "const checkDigit = randomDigits(1); // 1 dígito (último)\r",
+                  "\r",
+                  "const isbn = `${prefix}-${group}-${publisher}-${title}-${checkDigit}`;\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"isbn\", isbn);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isbn\": \"{{isbn}}\",\r\n    \"titulo\": \"{{$randomProductName}}\",\r\n    \"editorial\": \"{{$randomCompanyName}}\",\r\n    \"fechaPublicacion\": \"{{$isoTimestamp}}\",\r\n    \"autor\": \"{{$randomFullName}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/libros",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/libros/{{id}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by ISBN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/libros/isbn/{{isbn}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "isbn",
+                "{{isbn}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update book",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isbn\": \"{{isbn}}\",\r\n    \"titulo\": \"{{$randomProductName}}\",\r\n    \"editorial\": \"{{$randomCompanyName}}\",\r\n    \"fechaPublicacion\": \"{{$isoTimestamp}}\",\r\n    \"autor\": \"{{$randomFullName}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/libros/{{id}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete book",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"isbn\": \"{{isbn}}\",\r\n    \"titulo\": \"{{$randomProductName}}\",\r\n    \"editorial\": \"{{$randomCompanyName}}\",\r\n    \"fechaPublicacion\": \"{{$isoTimestamp}}\",\r\n    \"autor\": \"{{$randomFullName}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{url}}/libros/{{id}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Not Found by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/libros/{{id}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Not Found by ISBN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/libros/isbn/{{isbn}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "libros",
+                "isbn",
+                "{{isbn}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": ""
+    },
+    {
+      "key": "id",
+      "value": ""
+    },
+    {
+      "key": "isbn",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
